@@ -21,3 +21,9 @@ Nota*
 Para poder hacer cambios en la base de datos se tuvo que activar la instruccion 
 SET GLOBAL FOREIGN KEYS  al final del script, con el objetivo de poder resolver
 un problema relacionado con una llave foranea.
+
+
+CREADORES:
+
+Cesar Alexis Ochoa Tapia
+Carlos castorena Lugo 
