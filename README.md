@@ -26,4 +26,4 @@ un problema relacionado con una llave foranea.
 CREADORES:
 
 Cesar Alexis Ochoa Tapia -
-Carlos castorena Lugo 
+Carlos Castorena Lugo 
