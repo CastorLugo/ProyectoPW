@@ -1,0 +1,84 @@
+create database tienda;
+use tienda;
+
+create table cliente (
+idCliente int primary key auto_increment not null,
+nombreCliente varchar(45),
+email        varchar(45),
+contraseña    varchar(45)
+);
+
+create table carrito(
+idCarrito int primary key auto_increment not null,
+idCliente int,
+foreign key(idCliente) references cliente(idCliente)
+);
+
+create table estudio(
+idEstudio varchar(25) primary key not null,
+nombre varchar(25)
+);
+
+create table stock(
+idStock int primary key auto_increment not null,
+cantidad int
+);
+
+create table generos(
+idGenero varchar(25) primary key,
+nombre varchar(25)
+);
+
+create table pelicula(
+idPelicula int primary key auto_increment not null,
+nombre    varchar(25),
+idGenero varchar(25),
+idEstudio varchar(25),
+idStock int,
+precio int,
+foreign key(idGenero) references generos(idGenero) on update cascade,
+foreign key(idEstudio) references estudio(idEstudio) on update cascade,
+foreign key(idStock) references stock(idStock) on update cascade
+);
+
+create table carritoProducto(
+idProducto int primary key auto_increment not null,
+idCarrito int,
+idPelicula int,
+cantidad int,
+foreign key(idCarrito) references carrito(idCarrito),
+foreign key(idPelicula) references pelicula(idPelicula)
+);
+
+create table pedido(
+idPedido int primary key auto_increment not null,
+idCliente int,
+estado varchar(25),
+orden date,
+entrega date,
+foreign key(idCliente) references cliente(idCliente)
+);
+
+create table pedidoProducto(
+idPedidoProducto int primary key auto_increment not null,
+idPelicula int,
+idPedido int,
+cantidad int,
+precio int,
+foreign key(idPelicula) references pelicula(idPelicula),
+foreign key(idPedido) references pedido(idPedido)
+);
+
+insert into pelicula values(1, "The Batman", "ACC1", "WB01", 15, 150);
+insert into pelicula values(2, "Spiderman", "ACC1", "MV01", 2, 150);
+insert into pelicula values(3, "Morbius", "ACC1", "SY01", 3, 150);
+insert into pelicula values(4, "Animales Fantasticos", "FAN1", "WB01", 4, 150);
+insert into pelicula values(5, "Sonic", "COM1", "PP01", 5, 150);
+insert into pelicula values(6, "La Ciudad Perdida", "AVE1", "FF01", 6, 150);
+insert into pelicula values(8, "La Ciudad loca", "AVE1", "FF01", 6, 150);
+
+drop database tienda;
+drop table pelicula;
+
+
+set  GLOBAL FOREIGN_KEY_CHECKS = 0;
